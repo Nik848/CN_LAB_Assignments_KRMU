@@ -1,0 +1,93 @@
+# RIP Simulation Output
+
+## Router 0
+
+Router> show ip route
+
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+
+Gateway of last resort is not set
+
+C    10.0.0.0/8 is directly connected, FastEthernet0/0
+R    20.0.0.0/8 [120/1] via 40.40.40.2, 00:00:28, Serial2/0
+R    30.0.0.0/8 [120/2] via 40.40.40.2, 00:00:28, Serial2/0
+C    40.0.0.0/8 is directly connected, Serial2/0
+R    50.0.0.0/8 [120/1] via 40.40.40.2, 00:00:28, Serial2/0
+
+## Router 1
+
+Router> show ip route
+
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+
+Gateway of last resort is not set
+
+R    10.0.0.0/8 [120/1] via 40.40.40.1, 00:00:17, Serial2/0
+C    20.0.0.0/8 is directly connected, FastEthernet0/0
+R    30.0.0.0/8 [120/1] via 50.50.50.2, 00:00:23, Serial3/0
+C    40.0.0.0/8 is directly connected, Serial2/0
+C    50.0.0.0/8 is directly connected, Serial3/0
+
+## Router 2
+
+Router> show ip route
+
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+
+Gateway of last resort is not set
+
+R    10.0.0.0/8 [120/2] via 50.50.50.1, 00:00:20, Serial2/0
+R    20.0.0.0/8 [120/1] via 50.50.50.1, 00:00:20, Serial2/0
+C    30.0.0.0/8 is directly connected, FastEthernet0/0
+R    40.0.0.0/8 [120/1] via 50.50.50.1, 00:00:20, Serial2/0
+C    50.0.0.0/8 is directly connected, Serial2/0
+
+==================================================
+
+# OSPF Simulation Output
+
+## Router 0
+
+Router> show ip route
+
+Gateway of last resort is not set
+
+C    10.0.0.0/8 is directly connected, FastEthernet0/0
+O    20.0.0.0/8 [110/782] via 40.40.40.2, 00:08:33, Serial2/0
+O    30.0.0.0/8 [110/846] via 40.40.40.2, 00:07:15, Serial2/0
+C    40.0.0.0/8 is directly connected, Serial2/0
+O    50.0.0.0/8 [110/845] via 40.40.40.2, 00:08:33, Serial2/0
+
+## Router 1
+
+Router> show ip route
+
+Gateway of last resort is not set
+
+O    10.0.0.0/8 [110/65] via 40.40.40.1, 00:08:59, Serial2/0
+C    20.0.0.0/8 is directly connected, FastEthernet0/0
+O    30.0.0.0/8 [110/65] via 50.50.50.2, 00:07:51, Serial3/0
+C    40.0.0.0/8 is directly connected, Serial2/0
+C    50.0.0.0/8 is directly connected, Serial3/0
+
+## Router 2
+
+Router> show ip route
+
+Gateway of last resort is not set
+
+O    10.0.0.0/8 [110/129] via 50.50.50.1, 00:08:15, Serial2/0
+O    20.0.0.0/8 [110/65] via 50.50.50.1, 00:08:15, Serial2/0
+C    30.0.0.0/8 is directly connected, FastEthernet0/0
+O    40.0.0.0/8 [110/121] via 50.50.50.1, 00:08:15, Serial2/0
+C    50.0.0.0/8 is directly connected, Serial2/0
+
+==================================================
+
+## Final Observation
+
+* RIP uses hop count as metric and shows higher values for distant networks
+* OSPF uses cost and selects more optimal paths
+* OSPF routes have lower latency and faster convergence compared to RIP
+* Both protocols successfully establish connectivity across all routers
