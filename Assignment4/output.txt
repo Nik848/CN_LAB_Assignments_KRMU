@@ -1,0 +1,11 @@
+ping www.example.com
+
+Reply from 192.168.1.2 ...
+
+nslookup www.google.com
+
+Server: 192.168.1.2
+Address: 8.8.8.8
+
+tracert www.google.com
+...
